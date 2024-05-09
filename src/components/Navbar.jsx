@@ -1,8 +1,10 @@
 import { Button } from "@material-tailwind/react";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
+  const{user}=useAuth()
   let navItems = (
     <>
       <NavLink to="/">
