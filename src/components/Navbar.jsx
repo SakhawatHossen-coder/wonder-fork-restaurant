@@ -4,36 +4,28 @@ import { NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
-  const{user}=useAuth()
+  const { user } = useAuth();
   let navItems = (
     <>
       <NavLink to="/">
         <li>
-          <Button color="blue" className="btn pop">
+          <Button color="deep-orange" className="btn sans">
             Home
           </Button>
         </li>
       </NavLink>
-      <NavLink to="/alltouristspot">
+      <NavLink to="/allfoods">
         <li>
-          <Button color="blue" className="btn pop">
-            All Tourists Spot
+          <Button color="deep-orange" className="btn pop">
+            All Foods
           </Button>
         </li>
       </NavLink>
-      <NavLink to="/addtouristspot">
+      <NavLink to="/gallery">
         <li>
           {" "}
-          <Button color="blue" className="btn pop">
-            Add Tourists Spot
-          </Button>
-        </li>
-      </NavLink>
-      <NavLink to="/mylistpage">
-        <li>
-          {" "}
-          <Button color="blue" className="btn pop">
-            My List
+          <Button color="deep-orange" className="btn pop">
+            Gallery
           </Button>
         </li>
       </NavLink>
@@ -77,9 +69,7 @@ const Navbar = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navItems}</ul>
-          <div className="ml-8">
-            {/* <ThemeToggle /> */}
-          </div>
+          <div className="ml-8">{/* <ThemeToggle /> */}</div>
         </div>
 
         <div className="navbar-end">
@@ -118,7 +108,7 @@ const Navbar = () => {
             </div>
           ) : (
             <NavLink to="/login">
-              <Button color="green" className="btn">
+              <Button color="lime" className="btn">
                 Login
               </Button>
             </NavLink>
