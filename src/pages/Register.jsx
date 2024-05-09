@@ -110,6 +110,11 @@ const Register = () => {
                 placeholder="Photo Url"
                 {...register("photo", { required: true })}
               />
+              {errors.photo && (
+                <span className="text-deep-orange-400">
+                  This field is required
+                </span>
+              )}
             </div>
             <div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
               <svg
@@ -134,6 +139,11 @@ const Register = () => {
                 placeholder="Name"
                 {...register("name", { required: true })}
               />
+              {errors.name && (
+                <span className="text-deep-orange-400">
+                  This field is required
+                </span>
+              )}
             </div>
             <div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
               <svg
@@ -158,6 +168,10 @@ const Register = () => {
                 placeholder="Email Address"
                 {...register("email", { required: true })}
               />
+
+              {errors.email && (
+                <p className="text-deep-orange-400">This field is required</p>
+              )}
             </div>
             <div className="flex items-center border-2 py-2 px-3 rounded-2xl">
               <svg
@@ -180,6 +194,11 @@ const Register = () => {
                 placeholder="Password"
                 {...register("password", { required: true })}
               />
+              {errors.password && (
+                <span className="text-deep-orange-400">
+                  This field is required
+                </span>
+              )}
             </div>
             <button
               type="submit"

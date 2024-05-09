@@ -1,10 +1,10 @@
-import { Button } from "@material-tailwind/react";
+import { Button,Typography } from "@material-tailwind/react";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
-  const { user } = useAuth();
+  const { user,logOut } = useAuth();
   let navItems = (
     <>
       <NavLink to="/">

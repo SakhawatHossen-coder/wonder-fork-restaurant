@@ -1,13 +1,53 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { BsGoogle } from "react-icons/bs";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Login = () => {
+  const { logIn } = useAuth();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state || "/";
+  const onSubmit = (data) => {
+    const { email, password } = data;
+    // console.log(data);
+    logIn(email, password)
+      .then((result) => {
+        if (result.user) {
+          Swal.fire({
+            title: "Log In Successfully",
+            text: "Do you want to continue",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+          // console.log(result.user);
+          navigate(from);
+        }
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: "Try Again! Invalid Credentials",
+          text: "Do you want to continue",
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+      });
+  };
+
   return (
     <>
-      <section className="flex flex-col md:flex-row h-screen items-center">
+      <section className="flex flex-col md:flex-row h-screen items-center mb-24 mt-32">
         <div className="bg-indigo-600 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
           <img
-            src="https://source.unsplash.com/random"
+            src="https://source.unsplash.com/s"
             alt=""
             className="w-full h-full object-cover"
           />
@@ -17,12 +57,12 @@ const Login = () => {
           className="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12
         flex items-center justify-center"
         >
-          <div className="w-full h-100">
+          <div className="w-full mx-auto text-center">
             <h1 className="text-xl md:text-2xl font-bold leading-tight mt-12">
               Log in to your account
             </h1>
 
-            <form className="mt-6" action="#" method="POST">
+            <form className="mt-6" onSubmit={handleSubmit(onSubmit)}>
               <div>
                 <label className="block text-gray-700">Email Address</label>
                 <input
@@ -34,7 +74,13 @@ const Login = () => {
                   autofocus
                   autocomplete
                   required
+                  {...register("email", { required: true })}
                 />
+                {errors.photo && (
+                  <span className="text-deep-orange-400">
+                    This field is required
+                  </span>
+                )}
               </div>
 
               <div className="mt-4">
@@ -48,7 +94,13 @@ const Login = () => {
                   className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
                 focus:bg-white focus:outline-none"
                   required
+                  {...register("password", { required: true })}
                 />
+                {errors.password && (
+                  <span className="text-deep-orange-400">
+                    This field is required
+                  </span>
+                )}
               </div>
 
               <div className="text-right mt-2">
@@ -82,47 +134,36 @@ const Login = () => {
               className="w-full block bg-white hover:bg-gray-100 focus:bg-gray-100 text-gray-900 font-semibold rounded-lg px-4 py-3 border border-gray-300"
             >
               <div className="flex items-center justify-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                  className="w-6 h-6"
-                  viewBox="0 0 48 48"
-                >
-                  <defs>
-                    <path
-                      id="a"
-                      d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"
-                    />
-                  </defs>
-                  <clipPath id="b">
-                    <use xlink:href="#a" overflow="visible" />
-                  </clipPath>
-                  <path
-                    clip-path="url(#b)"
-                    fill="#FBBC05"
-                    d="M0 37V11l17 13z"
-                  />
-                  <path
-                    clip-path="url(#b)"
-                    fill="#EA4335"
-                    d="M0 11l17 13 7-6.1L48 14V0H0z"
-                  />
-                  <path
-                    clip-path="url(#b)"
-                    fill="#34A853"
-                    d="M0 37l30-23 7.9 1L48 0v48H0z"
-                  />
-                  <path
-                    clip-path="url(#b)"
-                    fill="#4285F4"
-                    d="M48 48L17 24l-4-3 35-10z"
-                  />
-                </svg>
-                <span className="ml-4">Log in with Google</span>
+                <span className="ml-4 flex items-center gap-3">
+                  <BsGoogle />
+                  Log in with Google
+                </span>
+              </div>
+            </button>
+            <button
+              type="button"
+              className="w-full block bg-white hover:bg-gray-100 focus:bg-gray-100 text-gray-900 font-semibold rounded-lg px-4 py-3 border border-gray-300"
+            >
+              <div className="flex items-center justify-center">
+                <span className="ml-4 flex items-center gap-3">
+                  <BsGoogle />
+                  Log in with Twitter
+                </span>
+              </div>
+            </button>
+            <button
+              type="button"
+              className="w-full block bg-white hover:bg-gray-100 focus:bg-gray-100 text-gray-900 font-semibold rounded-lg px-4 py-3 border border-gray-300"
+            >
+              <div className="flex items-center justify-center">
+                <span className="ml-4 flex items-center gap-3">
+                  <BsGoogle />
+                  Log in with Github
+                </span>
               </div>
             </button>
 
-            <p className="mt-8">
+            <p className="mt-8 mb-20">
               Need an account?{" "}
               <a
                 href="#"
