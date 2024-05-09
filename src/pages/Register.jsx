@@ -1,9 +1,66 @@
 import React from "react";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAuth from "../hooks/useAuth";
 
 const Register = () => {
+  const { createUser, updateUserProfile } = useAuth();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const navigate = useNavigate();
+  const onSubmit = (data) => {
+    const { email, password, photo, name } = data;
+    // console.log(data);
+    const validatePassword = (password) => {
+      return (
+        password.length >= 6 && // Minimum length
+        /[A-Z]/.test(password) && // Contains uppercase letter
+        /[a-z]/.test(password)
+      );
+    };
+    const isValidPassword = validatePassword(password);
+    if (!isValidPassword) {
+      // Display error message to the user
+      Swal.fire({
+        title: "Error! Invalid Password",
+        text: "Do you want to continue",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+
+      return; // Prevent further execution if password is invalid
+    }
+    createUser(email, password)
+      .then((result) => {
+        updateUserProfile(name, photo).then(() => {
+          const user = result.user;
+          // console.log(user);
+          Swal.fire({
+            title: "Successfully User Created ",
+            text: "Do you want to continue",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+          navigate("/login");
+        });
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: "Invalid email/password ",
+          text: "Do you want to continue",
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+      });
+  };
   return (
     <>
-      <div className="h-screen md:flex">
+      <div className="h-screen md:flex my-20">
         <div className="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden">
           <div>
             <h1 className="text-white font-bold text-4xl font-sans">
@@ -25,7 +82,7 @@ const Register = () => {
           <div className="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
         </div>
         <div className="flex md:w-1/2 justify-center py-10 items-center bg-white">
-          <form className="bg-white">
+          <form className="bg-white" onSubmit={handleSubmit(onSubmit)}>
             <h1 className="text-gray-800 font-bold text-2xl mb-1">
               Hello Again!
             </h1>
@@ -50,7 +107,8 @@ const Register = () => {
                 type="text"
                 name=""
                 id=""
-                placeholder="Full name"
+                placeholder="Photo Url"
+                {...register("photo", { required: true })}
               />
             </div>
             <div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
@@ -73,7 +131,8 @@ const Register = () => {
                 type="text"
                 name=""
                 id=""
-                placeholder="Username"
+                placeholder="Name"
+                {...register("name", { required: true })}
               />
             </div>
             <div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
@@ -97,6 +156,7 @@ const Register = () => {
                 name=""
                 id=""
                 placeholder="Email Address"
+                {...register("email", { required: true })}
               />
             </div>
             <div className="flex items-center border-2 py-2 px-3 rounded-2xl">
@@ -118,16 +178,29 @@ const Register = () => {
                 name=""
                 id=""
                 placeholder="Password"
+                {...register("password", { required: true })}
               />
             </div>
             <button
               type="submit"
               className="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
             >
-              Login
+              Register
             </button>
-            <span className="text-sm ml-2 hover:text-blue-500 cursor-pointer">
-              Forgot Password ?
+            <p className="text-xs opacity-80 my-4">
+              {" "}
+              your password -
+              <ul>
+                <li> ● Must have an Uppercase letter in the password</li>
+                <li>● Must have a Lowercase letter in the password</li>
+                <li>● Length must be at least 6 character</li>
+              </ul>
+            </p>
+            <span className="my-5 font-semibold p-2 px-2">
+              Already have an Account?
+              <Link className="text-blue-500 pl-2" to="/login">
+                Login
+              </Link>
             </span>
           </form>
         </div>
