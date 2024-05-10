@@ -4,6 +4,10 @@ import Layout from "../layout/Layout";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import AllFoodPage from "../pages/AllFoodPage";
+import MyAddedFooditems from "../pages/MyAddedFooditems";
+import AddFoodItem from "../pages/AddFoodItem";
+import MyOrderedFoodItems from "../pages/MyOrderedFoodItems";
 
 const router = createBrowserRouter([
   {
@@ -16,13 +20,30 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-          path:'/login',
-          element:<Login/>
+        path: "/login",
+        element: <Login />,
       },
       {
-          path:'/register',
-          element:<Register/>
-      }
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/allfoodpage",
+        element: <AllFoodPage />,
+      },
+
+      {
+        path: "/myaddedfooditems",
+        element: <MyAddedFooditems />,
+      },
+      {
+        path: "/myorderedfooditems",
+        element: <MyOrderedFoodItems />,
+      },
+      {
+        path: "/addfooditem",
+        element: <AddFoodItem />,
+      },
     ],
   },
 ]);

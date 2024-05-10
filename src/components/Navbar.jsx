@@ -1,10 +1,10 @@
-import { Button,Typography } from "@material-tailwind/react";
+import { Button, Typography } from "@material-tailwind/react";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
-  const { user,logOut } = useAuth();
+  const { user, logOut } = useAuth();
   let navItems = (
     <>
       <NavLink to="/">
@@ -14,7 +14,7 @@ const Navbar = () => {
           </Button>
         </li>
       </NavLink>
-      <NavLink to="/allfoods">
+      <NavLink to="/allfoodpage">
         <li>
           <Button color="deep-orange" className="btn pop">
             All Foods
@@ -99,6 +99,34 @@ const Navbar = () => {
                     {user?.displayName || "User not found"}
                   </Typography>
                 </li>
+                <li>
+                  <NavLink
+                    to="/myaddedfooditems"
+                    color="blue"
+                    variant="outlined"
+                  >
+                    <a className="pop">My added food items</a>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/addfooditem"
+                    color="blue"
+                    variant="outlined"
+                  >
+                    <a className="pop">Add a food item</a>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/myorderedfooditems"
+                    color="blue"
+                    variant="outlined"
+                  >
+                    <a className="pop">My ordered food items</a>
+                  </NavLink>
+                </li>
+
                 <li>
                   <Button color="blue" variant="outlined" onClick={logOut}>
                     <a className="pop">Logout</a>
