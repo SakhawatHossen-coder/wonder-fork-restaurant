@@ -30,6 +30,7 @@ const AddFoodItem = () => {
       foodcategory,
       quantity,
       price,
+      country,
       addusername,
       adduseremail,
       description,
@@ -195,7 +196,7 @@ const AddFoodItem = () => {
               </div>
               <div>
                 <label
-                  for="company"
+                  for="Country"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
                   Food Origin (Country)
@@ -206,6 +207,7 @@ const AddFoodItem = () => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Food Origin (Country)"
                   required
+                  {...register("country", { required: true })}
                 />
               </div>
               <div>

@@ -24,7 +24,7 @@ const Banner = () => {
             a sensory adventure that goes beyond the plate.
           </p>
           <Button color="blue" className="">
-            <Link to="/allfoodspage">All Foods</Link>
+            <Link to="/allfoodpage">All Foods</Link>
           </Button>
         </div>
       </div>
