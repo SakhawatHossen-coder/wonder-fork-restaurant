@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const MyOrderedFoodItems = () => {
-  return (
-    <div>MyOrderedFoodItems</div>
-  )
-}
+  return <div>MyOrderedFoodItems</div>;
+};
 
-export default MyOrderedFoodItems
+export default MyOrderedFoodItems;

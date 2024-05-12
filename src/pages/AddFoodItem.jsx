@@ -1,5 +1,7 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const AddFoodItem = () => {
   const {
@@ -9,9 +11,53 @@ const AddFoodItem = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-       const {foodname}=data;
-       console.log(foodname);
+    // const {}
+    // try {
+    //   const { data } = await axios.post(
+    //     `${import.meta.env.vite_base_url}/addfood`,
+    //     data
+    //   );
+    //   console.log(data);
+    //   toast.success("Food item added Successfully!");
+    //   // navigate('/my-posted-jobs')
+    // } catch (err) {
+    //   console.log(err);
+    // }
+    const {
+      foodname,
+      foodimage,
+      foodcategory,
+      quantity,
+      price,
+      addusername,
+      adduseremail,
+      description,
+    } = data;
+    // console.log(typeof price, typeof quantity);
+    // Parse quantity and price to numbers
+    const numericQuantity = parseFloat(quantity);
+    const numericPrice = parseFloat(price);
 
+    // Update data object with numeric values
+    const updatedData = {
+      ...data,
+      quantity: numericQuantity,
+      price: numericPrice,
+    };
+    fetch(`http://localhost:5000/addfood`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <>
