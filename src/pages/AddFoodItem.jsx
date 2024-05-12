@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const AddFoodItem = () => {
   const {
@@ -54,9 +55,23 @@ const AddFoodItem = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Successfully Data Added",
+            text: "Do you want to continue",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+        }
       })
       .catch((err) => {
         console.log(err);
+        Swal.fire({
+          title: "Data didn't added",
+          text: "Do you want to continue",
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
       });
   };
   return (
