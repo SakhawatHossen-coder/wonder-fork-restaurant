@@ -20,6 +20,8 @@ const DetailsPage = () => {
     quantity,
     _id,
     addusername,
+    email,
+    username,
     description,
     country,
   } = singleFood;
@@ -56,7 +58,7 @@ const DetailsPage = () => {
               Quantity: {quantity}
             </Typography>
             <Typography color="blue-gray" className="font-medium">
-              Made By: {addusername}
+              Made By: {username}
             </Typography>
             <Typography color="blue-gray" className="font-medium">
               Food Origin: {country}

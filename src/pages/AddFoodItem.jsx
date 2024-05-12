@@ -3,8 +3,11 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import useAuth from "../hooks/useAuth";
 
 const AddFoodItem = () => {
+   const { user } = useAuth();
+   console.log(user);
   const {
     register,
     handleSubmit,
@@ -12,6 +15,8 @@ const AddFoodItem = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
+   
+
     // const {}
     // try {
     //   const { data } = await axios.post(
@@ -31,6 +36,7 @@ const AddFoodItem = () => {
       quantity,
       price,
       country,
+      email,
       addusername,
       adduseremail,
       description,
@@ -39,10 +45,13 @@ const AddFoodItem = () => {
     // Parse quantity and price to numbers
     const numericQuantity = parseFloat(quantity);
     const numericPrice = parseFloat(price);
+    // const userEmail = user?.email;
 
     // Update data object with numeric values
     const updatedData = {
       ...data,
+      email: user?.email,
+      username:user?.displayName,
       quantity: numericQuantity,
       price: numericPrice,
     };
@@ -175,7 +184,9 @@ const AddFoodItem = () => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Add By Name"
                   required
-                  {...register("addusername", { required: true })}
+                  // {...register("addusername", { required: true })}
+                  defaultValue={user?.displayName}
+                  disabled
                 />
               </div>
               <div>
@@ -191,7 +202,9 @@ const AddFoodItem = () => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Add By Email"
                   required
-                  {...register("adduseremail", { required: true })}
+                  // {...register("adduseremail", { required: true })}
+                  defaultValue={user?.email}
+                  disabled
                 />
               </div>
               <div>
