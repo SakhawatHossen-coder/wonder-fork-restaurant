@@ -1,28 +1,35 @@
-import React from 'react'
+import { Button } from "@material-tailwind/react";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
     <div
-      className="hero min-h-screen"
+      className="hero min-h-screen object-cover bg-center"
       style={{
         backgroundImage:
-          "url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg)",
+          "url(https://images.pexels.com/photos/2696064/pexels-photo-2696064.jpeg?auto=compress&cs=tinysrgb&w=600)",
       }}
     >
-      <div className="hero-overlay bg-opacity-60"></div>
+      <div className="hero-overlay bg-opacity-80"></div>
       <div className="hero-content text-center text-neutral-content">
         <div className="max-w-md">
-          <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
+          <h1 className="mb-5 text-2xl md:text-5xl font-bold text-white">
+            Experience exceptional food, vibrant culture, and lasting memories.
+          </h1>
           <p className="mb-5">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+            Indulge in more than just a meal at [Your Restaurant Name]. We are a
+            renowned restaurant brand dedicated to crafting unforgettable dining
+            experiences. Our passion lies in exceeding expectations by curating
+            a sensory adventure that goes beyond the plate.
           </p>
-          <button className="btn btn-primary">Get Started</button>
+          <Button color="blue" className="">
+            <Link to="/allfoodspage">All Foods</Link>
+          </Button>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default Banner
+export default Banner;
