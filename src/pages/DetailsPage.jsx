@@ -7,7 +7,7 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const DetailsPage = () => {
   const singleFood = useLoaderData();
@@ -78,7 +78,9 @@ const DetailsPage = () => {
             fullWidth={true}
             className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
           >
+               <Link to={`/purchasefood/${_id}`}>
             Purchase
+               </Link>
           </Button>
         </CardFooter>
       </Card>

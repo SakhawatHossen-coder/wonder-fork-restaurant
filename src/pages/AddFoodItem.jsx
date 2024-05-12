@@ -7,7 +7,7 @@ import useAuth from "../hooks/useAuth";
 
 const AddFoodItem = () => {
    const { user } = useAuth();
-   console.log(user);
+  //  console.log(user);
   const {
     register,
     handleSubmit,
