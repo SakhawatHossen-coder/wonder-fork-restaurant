@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import GalleryCard from "../components/GalleryCard";
 import { Button } from "@material-tailwind/react";
 import { BiPlusCircle } from "react-icons/bi";
@@ -11,7 +11,15 @@ import "react-toastify/dist/ReactToastify.css";
 
 const GallaryPage = () => {
   const { user } = useAuth();
-
+  const [feedbackUser, setFeedbackUser] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/addfeedback`)
+      .then((res) => res.json())
+      .then((data) => {
+        setFeedbackUser(data);
+      });
+  }, []);
+  //   console.log(feedback);
   const handleUserForm = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -21,19 +29,22 @@ const GallaryPage = () => {
       photo,
       feedback,
     };
+    const newFeedbackData = {
+      ...feedbackData,
+      profile: user?.displayName,
+    };
     fetch(`http://localhost:5000/addfeedback`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(feedbackData),
+      body: JSON.stringify(newFeedbackData),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         if (data.insertedId) {
-          // toast.success("Your Feedbackc added successfully");
-          toast.success("🦄 Your Feedbackc added successfully", {
+          toast.success("✅Your Feedback added successfully", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -42,23 +53,20 @@ const GallaryPage = () => {
             draggable: true,
             progress: undefined,
             theme: "light",
-           
           });
-          // Swal.fire({
-          //   title: "Successfully Data Added",
-          //   text: "Do you want to continue",
-          //   icon: "success",
-          //   confirmButtonText: "Ok",
-          // });
         }
       })
       .catch((err) => {
         console.log(err);
-        Swal.fire({
-          title: "Data didn't added",
-          text: "Do you want to continue",
-          icon: "error",
-          confirmButtonText: "Ok",
+        toast.error("❌Your Feedback failed", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
         });
       });
   };
@@ -89,8 +97,10 @@ const GallaryPage = () => {
       {/* Gallery Section */}
       {/* Card */}
       {/* <div className="gird grid-cols-1 md:grid-cols-2 lg:grid-cols-3 min-h-screen from-teal-100 via-teal-300 to-teal-500 bg-gradient-to-br"> */}
-      <div className="gird grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <GalleryCard />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {feedbackUser?.map((feedbackUser, idx) => (
+          <GalleryCard key={idx} feedbackUser={feedbackUser} />
+        ))}
       </div>
       {/* </div> */}
       <div className="my-12">
