@@ -6,17 +6,16 @@ import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 
 const AddFoodItem = () => {
-   const { user } = useAuth();
+  const { user } = useAuth();
   //  console.log(user);
   const {
     register,
+    reset,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-   
-
     // const {}
     // try {
     //   const { data } = await axios.post(
@@ -51,7 +50,7 @@ const AddFoodItem = () => {
     const updatedData = {
       ...data,
       email: user?.email,
-      username:user?.displayName,
+      username: user?.displayName,
       quantity: numericQuantity,
       price: numericPrice,
     };
@@ -83,6 +82,7 @@ const AddFoodItem = () => {
           confirmButtonText: "Ok",
         });
       });
+    reset();
   };
   return (
     <>

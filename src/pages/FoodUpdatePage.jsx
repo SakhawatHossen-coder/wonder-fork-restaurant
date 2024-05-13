@@ -31,11 +31,11 @@ const FoodUpdatePage = () => {
     const numericQuantity = parseFloat(quantity);
     const numericPrice = parseFloat(price);
     const formData = {
+      foodimage,
       foodname,
+      foodcategory,
       price,
       quantity,
-      foodimage,
-      foodcategory,
       description,
       country,
     };
