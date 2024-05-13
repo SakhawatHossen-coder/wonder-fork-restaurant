@@ -18,7 +18,6 @@ const FoodUpdatePage = () => {
     country,
   } = updateData;
   const navigate = useNavigate();
-  const location = useLocation();
   const from = "/myaddedfooditems" || "/";
   //   console.log(updateData);
   const handleUpdateForm = (e) => {
