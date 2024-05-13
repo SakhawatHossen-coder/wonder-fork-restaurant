@@ -1,9 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { BsGoogle } from "react-icons/bs";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
+import SocialLogin from "../components/SocialLogin";
 
 const Login = () => {
   const { logIn } = useAuth();
@@ -129,39 +129,7 @@ const Login = () => {
 
             <hr className="my-6 border-gray-300 w-full" />
 
-            <button
-              type="button"
-              className="w-full block bg-white hover:bg-gray-100 focus:bg-gray-100 text-gray-900 font-semibold rounded-lg px-4 py-3 border border-gray-300"
-            >
-              <div className="flex items-center justify-center">
-                <span className="ml-4 flex items-center gap-3">
-                  <BsGoogle />
-                  Log in with Google
-                </span>
-              </div>
-            </button>
-            <button
-              type="button"
-              className="w-full block bg-white hover:bg-gray-100 focus:bg-gray-100 text-gray-900 font-semibold rounded-lg px-4 py-3 border border-gray-300"
-            >
-              <div className="flex items-center justify-center">
-                <span className="ml-4 flex items-center gap-3">
-                  <BsGoogle />
-                  Log in with Twitter
-                </span>
-              </div>
-            </button>
-            <button
-              type="button"
-              className="w-full block bg-white hover:bg-gray-100 focus:bg-gray-100 text-gray-900 font-semibold rounded-lg px-4 py-3 border border-gray-300"
-            >
-              <div className="flex items-center justify-center">
-                <span className="ml-4 flex items-center gap-3">
-                  <BsGoogle />
-                  Log in with Github
-                </span>
-              </div>
-            </button>
+       <SocialLogin/>
 
             <p className="mt-8 mb-20">
               Need an account?{" "}
@@ -180,3 +148,23 @@ const Login = () => {
 };
 
 export default Login;
+
+/* 
+ const { googleLogin, twitterLogin, githubLogin } = useContext(AuthContext);
+  let navigate = useNavigate();
+  let location = useLocation();
+  let from = location?.state || "/";
+  const handleSocialLogin = (socialProvider) => {
+    socialProvider().then((result) => {
+      if (result.user) {
+        Swal.fire({
+          title: "Log In Successfully",
+          text: "Do you want to continue",
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
+        navigate(from);
+      }
+    });
+  };
+*/

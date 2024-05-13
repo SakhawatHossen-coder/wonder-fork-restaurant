@@ -96,7 +96,7 @@ const GallaryPage = () => {
       </div>
       {/* Gallery Section */}
       {/* Card */}
-      {/* <div className="gird grid-cols-1 md:grid-cols-2 lg:grid-cols-3 min-h-screen from-teal-100 via-teal-300 to-teal-500 bg-gradient-to-br"> */}
+ 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {feedbackUser?.map((feedbackUser, idx) => (
           <GalleryCard key={idx} feedbackUser={feedbackUser} />
@@ -104,8 +104,7 @@ const GallaryPage = () => {
       </div>
       {/* </div> */}
       <div className="my-12">
-        {/* Open the modal using document.getElementById('ID').showModal() method */}
-
+       
         <Button
           onClick={() => document.getElementById("my_modal_5").showModal()}
           size="lg"
@@ -164,7 +163,7 @@ const GallaryPage = () => {
 
             <div className="modal-action">
               <form method="dialog">
-                {/* if there is a button in form, it will close the modal */}
+        
                 <button className="btn btn-circle bg-red-500">X</button>
               </form>
             </div>
