@@ -1,83 +1,75 @@
-import axios from "axios";
-import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+import React from "react";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 
-const AddFoodItem = () => {
-   const { user } = useAuth();
-  //  console.log(user);
+const FoodUpdatePage = () => {
+  const updateData = useLoaderData();
+  const { user } = useAuth();
   const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => {
-   
+    foodname,
+    foodimage,
+    foodcategory,
+    price,
+    quantity,
+    _id,
 
-    // const {}
-    // try {
-    //   const { data } = await axios.post(
-    //     `${import.meta.env.vite_base_url}/addfood`,
-    //     data
-    //   );
-    //   console.log(data);
-    //   toast.success("Food item added Successfully!");
-    //   // navigate('/my-posted-jobs')
-    // } catch (err) {
-    //   console.log(err);
-    // }
-    const {
-      foodname,
-      foodimage,
-      foodcategory,
-      quantity,
-      price,
-      country,
-      email,
-      addusername,
-      adduseremail,
-      description,
-    } = data;
-    // console.log(typeof price, typeof quantity);
-    // Parse quantity and price to numbers
+    description,
+    country,
+  } = updateData;
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = "/myaddedfooditems" || "/";
+  //   console.log(updateData);
+  const handleUpdateForm = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const foodname = form.elements.foodname.value;
+    const price = form.elements.price.value;
+    const quantity = form.elements.quantity.value;
+    const description = form.elements.description.value;
+    const country = form.elements.country.value;
     const numericQuantity = parseFloat(quantity);
     const numericPrice = parseFloat(price);
-    // const userEmail = user?.email;
-
-    // Update data object with numeric values
+    const formData = {
+      foodname,
+      price,
+      quantity,
+      foodimage,
+      foodcategory,
+      description,
+      country,
+    };
     const updatedData = {
-      ...data,
-      email: user?.email,
-      username:user?.displayName,
+      ...formData,
       quantity: numericQuantity,
       price: numericPrice,
     };
-    fetch(`http://localhost:5000/addfood`, {
-      method: "POST",
+
+    fetch(`http://localhost:5000/addfood/${_id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(updatedData),
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.insertedId) {
+      .then((response) => response.json())
+      .then((responseData) => {
+        if (responseData.modifiedCount > 0) {
           Swal.fire({
-            title: "Successfully Food Item Added",
+            title: "Food Item Updated Successfully",
             text: "Do you want to continue",
             icon: "success",
             confirmButtonText: "Ok",
           });
+          navigate(from);
         }
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.error("update failed:", error);
+        // Show error message to user
         Swal.fire({
-          title: "Data didn't added",
+          title: "Data didn't updated",
           text: "Do you want to continue",
           icon: "error",
           confirmButtonText: "Ok",
@@ -89,7 +81,7 @@ const AddFoodItem = () => {
       <div>AddFoodItem</div>
       <div>
         <div className="max-w-2xl mx-auto bg-white p-16">
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleUpdateForm}>
             <div className="grid gap-6 mb-6 lg:grid-cols-2">
               <div>
                 <label
@@ -104,7 +96,8 @@ const AddFoodItem = () => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Food Name"
                   required
-                  {...register("foodname", { required: true })}
+                  defaultValue={foodname}
+                  name="foodname"
                 />
               </div>
               <div>
@@ -120,7 +113,8 @@ const AddFoodItem = () => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Food Image Url"
                   required
-                  {...register("foodimage", { required: true })}
+                  name="foodimage"
+                  defaultValue={foodimage}
                 />
               </div>
               <div>
@@ -136,7 +130,8 @@ const AddFoodItem = () => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Food Category"
                   required
-                  {...register("foodcategory", { required: true })}
+                  name="foodcategory"
+                  defaultValue={foodcategory}
                 />
               </div>
               <div>
@@ -152,7 +147,8 @@ const AddFoodItem = () => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Quantity"
                   required
-                  {...register("quantity", { required: true })}
+                  name="quantity"
+                  defaultValue={quantity}
                 />
               </div>
               <div>
@@ -168,7 +164,8 @@ const AddFoodItem = () => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Price"
                   required
-                  {...register("price", { required: true })}
+                  name="price"
+                  defaultValue={price}
                 />
               </div>
               <div>
@@ -220,12 +217,13 @@ const AddFoodItem = () => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Food Origin (Country)"
                   required
-                  {...register("country", { required: true })}
+                  name="country"
+                  defaultValue={country}
                 />
               </div>
               <div>
                 <label
-                  for="company"
+                  for="Short Description"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
                   Short Description
@@ -236,7 +234,8 @@ const AddFoodItem = () => {
                   className="textarea textarea-bordered bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Short Description"
                   required
-                  {...register("description", { required: true })}
+                  name="description"
+                  defaultValue={description}
                 ></textarea>
               </div>
             </div>
@@ -245,7 +244,7 @@ const AddFoodItem = () => {
               type="submit"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              Add Item
+              Update Item
             </button>
           </form>
         </div>
@@ -253,5 +252,4 @@ const AddFoodItem = () => {
     </>
   );
 };
-
-export default AddFoodItem;
+export default FoodUpdatePage;
