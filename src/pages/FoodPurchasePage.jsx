@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
@@ -28,6 +28,8 @@ const FoodPurchasePage = () => {
   //   console.log(purchasefood);
   const { foodname, quantity, price, email, addusername, adduseremail } =
     purchasefood;
+     const navigate = useNavigate();
+  const from = "/allfoodpage" || "/";
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -72,6 +74,8 @@ const FoodPurchasePage = () => {
             icon: "success",
             confirmButtonText: "Ok",
           });
+          navigate(from);
+
         }
       })
       .catch((error) => {

@@ -11,7 +11,7 @@ import { useLoaderData } from "react-router-dom";
 
 const SingleFoodPage = () => {
   const singleFood = useLoaderData();
-  console.log(singleFood);
+  // console.log(singleFood);
   return (
     <>
       <Card className="w-96">

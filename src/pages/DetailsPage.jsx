@@ -8,10 +8,13 @@ import {
   Button,
 } from "@material-tailwind/react";
 import { Link, useLoaderData } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const DetailsPage = () => {
   const singleFood = useLoaderData();
   //   console.log(singleFood);
+  const { user } = useAuth();
+
   const {
     foodname,
     foodimage,
@@ -25,6 +28,11 @@ const DetailsPage = () => {
     description,
     country,
   } = singleFood;
+  console.log(user?.email);
+  console.log(email);
+  // if (user?.email===email){
+
+  // }
   return (
     <>
       <div className="my-8">
@@ -73,15 +81,39 @@ const DetailsPage = () => {
           </Typography>
         </CardBody>
         <CardFooter className="pt-0">
-          <Button
+          {/* <Button
             ripple={false}
+            color="green"
+            disabled
             fullWidth={true}
-            className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+            className={
+              user?.email === email
+                ? "disabled"
+                : `shadow-none disabled hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100`
+            }
           >
-               <Link to={`/purchasefood/${_id}`}>
-            Purchase
-               </Link>
-          </Button>
+            <Link to={`/purchasefood/${_id}`}>Purchase</Link>
+          </Button> */}
+          {user?.email === email ? (
+            <Button
+              ripple={false}
+              color="green"
+              disabled
+              fullWidth={true}
+              className="shadow-none disabled hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+            >
+              <Link to={`/purchasefood/${_id}`}>Purchase</Link>
+            </Button>
+          ) : (
+            <Button
+              ripple={false}
+              color="green"
+              fullWidth={true}
+              className="shadow-none disabled hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+            >
+              <Link to={`/purchasefood/${_id}`}>Purchase</Link>
+            </Button>
+          )}
         </CardFooter>
       </Card>
     </>

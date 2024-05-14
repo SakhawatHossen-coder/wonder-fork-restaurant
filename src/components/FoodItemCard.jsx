@@ -8,7 +8,7 @@ import {
   Button,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
-const FoodItemCard = ({ item, handleDelete }) => {
+const FoodItemCard = ({ item }) => {
   const { foodimage, foodname, price, description, _id } = item;
 
   return (
@@ -29,9 +29,6 @@ const FoodItemCard = ({ item, handleDelete }) => {
         <Link to={`/addfood/update/${_id}`}>
           <Button color="green">Update</Button>
         </Link>
-        <Button onClick={() => handleDelete(_id)} color="red">
-          X
-        </Button>
       </CardFooter>
     </Card>
   );

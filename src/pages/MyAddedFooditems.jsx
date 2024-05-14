@@ -20,41 +20,10 @@ const MyAddedFooditems = () => {
   return (
     <>
       <div>MyAddedFooditems</div>
-      <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mx-4">
         {items?.map((item, idx) => {
-            const handleDelete = (_id) => {
-              Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!",
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  fetch(`http://localhost:5000/addfood/${item._id}`, {
-                    method: "DELETE",
-                  })
-                    .then((res) => res.json())
-                    .then((data) => {
-                      if (data.deletedCount > 0) {
-                        Swal.fire({
-                          title: "Deleted!",
-                          text: "Your item has been deleted.",
-                          icon: "success",
-                        });
-                        const remaining = items.filter((i) => i._id !== _id);
-                        setItems(remaining);
-                      }
-                    });
-                }
-              });
-            };
-        
-          return (
-            <FoodItemCard key={idx} handleDelete={handleDelete} item={item} />
-          );})}
+          return <FoodItemCard key={idx} item={item} />;
+        })}
       </div>
     </>
   );
