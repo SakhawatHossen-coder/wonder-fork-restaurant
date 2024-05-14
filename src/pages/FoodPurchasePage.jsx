@@ -1,9 +1,10 @@
 import React from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
+import { toast } from "react-toastify";
 const FoodPurchasePage = () => {
   const { user } = useAuth();
   const currentDate = new Date();
@@ -28,7 +29,7 @@ const FoodPurchasePage = () => {
   //   console.log(purchasefood);
   const { foodname, quantity, price, email, addusername, adduseremail } =
     purchasefood;
-     const navigate = useNavigate();
+  const navigate = useNavigate();
   const from = "/allfoodpage" || "/";
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,7 +55,7 @@ const FoodPurchasePage = () => {
       quantity: numericQuantity,
       price: numericPrice,
     };
-//     console.log("Purchase data:", updatedData); // For debugging
+    //     console.log("Purchase data:", updatedData); // For debugging
 
     // Implement logic to send purchase data to your backend API
     fetch("http://localhost:5000/purchasefood", {
@@ -65,8 +66,11 @@ const FoodPurchasePage = () => {
       .then((response) => response.json())
       .then((responseData) => {
         // Handle successful purchase response
-     //    console.log("Purchase successful:", responseData);
+        //    console.log("Purchase successful:", responseData);
         // Show success message to user (e.g., using toast or alerts)
+        if (numericQuantity <= 0) {
+          return toast.error("item is not available");
+        }
         if (responseData.insertedId) {
           Swal.fire({
             title: "Successfully Order Done",
@@ -75,7 +79,6 @@ const FoodPurchasePage = () => {
             confirmButtonText: "Ok",
           });
           navigate(from);
-
         }
       })
       .catch((error) => {
