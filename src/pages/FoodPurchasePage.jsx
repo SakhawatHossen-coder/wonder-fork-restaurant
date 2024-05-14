@@ -26,9 +26,16 @@ const FoodPurchasePage = () => {
   //     formState: { errors },
   //   } = useForm();
   const purchasefood = useLoaderData();
-  //   console.log(purchasefood);
-  const { foodname, quantity, price, email, addusername, adduseremail } =
-    purchasefood;
+  // console.log(purchasefood);
+  const {
+    foodname,
+    quantity,
+    price,
+    foodimage,
+    email,
+    username,
+    adduseremail,
+  } = purchasefood;
   const navigate = useNavigate();
   const from = "/allfoodpage" || "/";
   const handleSubmit = (e) => {
@@ -42,6 +49,7 @@ const FoodPurchasePage = () => {
     const date = form.elements.date.value;
     const numericQuantity = parseFloat(quantity);
     const numericPrice = parseFloat(price);
+    console.log(foodimage, username);
     const formData = {
       foodname,
       price,
@@ -49,6 +57,8 @@ const FoodPurchasePage = () => {
       buyeremail,
       buyername,
       date,
+      foodimage,
+      username,
     };
     const updatedData = {
       ...formData,
