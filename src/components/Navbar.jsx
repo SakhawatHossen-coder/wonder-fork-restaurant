@@ -105,16 +105,12 @@ const Navbar = () => {
                     color="blue"
                     variant="outlined"
                   >
-                    <a className="pop">My added food items</a>
+                    <span className="pop">My added food items</span>
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    to="/addfooditem"
-                    color="blue"
-                    variant="outlined"
-                  >
-                    <a className="pop">Add a food item</a>
+                  <NavLink to="/addfooditem" color="blue" variant="outlined">
+                    <span className="pop">Add a food item</span>
                   </NavLink>
                 </li>
                 <li>
@@ -123,13 +119,18 @@ const Navbar = () => {
                     color="blue"
                     variant="outlined"
                   >
-                    <a className="pop">My ordered food items</a>
+                    <span className="pop">My ordered food items</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/mypurchasepage" color="blue" variant="outlined">
+                    <span className="pop">My Purchase Page</span>
                   </NavLink>
                 </li>
 
                 <li>
                   <Button color="blue" variant="outlined" onClick={logOut}>
-                    <a className="pop">Logout</a>
+                    <span className="pop">Logout</span>
                   </Button>
                 </li>
               </ul>

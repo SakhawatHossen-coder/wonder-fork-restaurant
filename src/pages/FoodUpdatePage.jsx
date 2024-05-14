@@ -24,6 +24,8 @@ const FoodUpdatePage = () => {
     e.preventDefault();
     const form = e.target;
     const foodname = form.elements.foodname.value;
+    const foodimage = form.elements.foodimage.value;
+    const foodcategory = form.elements.foodcategory.value;
     const price = form.elements.price.value;
     const quantity = form.elements.quantity.value;
     const description = form.elements.description.value;

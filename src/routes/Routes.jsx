@@ -13,6 +13,7 @@ import FoodPurchasePage from "../pages/FoodPurchasePage";
 import GallaryPage from "../pages/GallaryPage";
 import PrivateRoutes from "./PrivateRoutes";
 import FoodUpdatePage from "../pages/FoodUpdatePage";
+import MyPurchasePage from "../pages/MyPurchasePage";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: "/myaddedfooditems",
         element: <MyAddedFooditems />,
+      },
+      {
+        path: "/mypurchasepage",
+        element: <MyPurchasePage />,
       },
       {
         path: "/myorderedfooditems",
