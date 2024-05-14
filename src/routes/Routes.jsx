@@ -71,7 +71,6 @@ const router = createBrowserRouter([
       {
         path: "/myorderedfooditems",
         element: <MyOrderedFoodItems />,
-      
       },
       {
         path: "/addfooditem",

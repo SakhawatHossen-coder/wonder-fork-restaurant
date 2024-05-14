@@ -14,7 +14,6 @@ const DetailsPage = () => {
   const singleFood = useLoaderData();
   //   console.log(singleFood);
   const { user } = useAuth();
-
   const {
     foodname,
     foodimage,
@@ -28,11 +27,7 @@ const DetailsPage = () => {
     description,
     country,
   } = singleFood;
-  console.log(user?.email);
-  console.log(email);
-  // if (user?.email===email){
 
-  // }
   return (
     <>
       <div className="my-8">
@@ -81,19 +76,6 @@ const DetailsPage = () => {
           </Typography>
         </CardBody>
         <CardFooter className="pt-0">
-          {/* <Button
-            ripple={false}
-            color="green"
-            disabled
-            fullWidth={true}
-            className={
-              user?.email === email
-                ? "disabled"
-                : `shadow-none disabled hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100`
-            }
-          >
-            <Link to={`/purchasefood/${_id}`}>Purchase</Link>
-          </Button> */}
           {user?.email === email ? (
             <Button
               ripple={false}
