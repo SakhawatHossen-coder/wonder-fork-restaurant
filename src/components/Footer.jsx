@@ -22,11 +22,11 @@ const currentYear = new Date().getFullYear();
 
 const Footer = () => {
   return (
-    <footer className="relative w-full mt-[20rem]">
+    <footer className="relative w-full mt-[12rem]">
       <div className="mx-auto w-full max-w-7xl px-8">
         <div className="grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
           <Typography variant="h5" className="mb-6 jost">
-            Wanderlust Voyage
+            The Wandering Fork
             <Typography variant="paragraph" className="my-6 pop">
               <span>{/* <MdMail /> */}</span>
               Email:contact@gmail.com

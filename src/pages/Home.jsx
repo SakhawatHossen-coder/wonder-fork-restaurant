@@ -2,6 +2,7 @@ import React from "react";
 import Banner from "../components/Banner";
 import Faq from "../components/Faq";
 import TopFoodSection from "../components/TopFoodSection";
+import Newsletter from "../components/Newsletter";
 
 const Home = () => {
   return (
@@ -10,8 +11,9 @@ const Home = () => {
       {/* Top Food */}
       <TopFoodSection />
       {/* FAQ */}
-      <div className="my-10">
+      <div className="my-6">
         <Faq />
+        <Newsletter />
       </div>
     </div>
   );

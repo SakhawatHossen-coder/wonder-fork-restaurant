@@ -28,9 +28,6 @@ const TopFoodCard = ({ food }) => {
         <Typography variant="h5" color="blue-gray" className="mb-2">
           Price $:{price}
         </Typography>
-        <Typography variant="h5" color="blue-gray" className="mb-2">
-          Quantity :{quantity}
-        </Typography>
       </CardBody>
       <CardFooter className="pt-0">
         <Link to={`/addfood/${_id}`}>
