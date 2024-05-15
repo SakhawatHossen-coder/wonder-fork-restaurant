@@ -36,7 +36,6 @@ const Footer = () => {
               Phone: 0012345-68777
             </Typography>
           </Typography>
-
           <div className="grid grid-cols-3 justify-between gap-4">
             {LINKS.map(({ title, items }) => (
               <ul key={title}>

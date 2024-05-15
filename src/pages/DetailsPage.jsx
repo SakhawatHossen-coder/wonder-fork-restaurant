@@ -83,24 +83,28 @@ const DetailsPage = () => {
         </CardBody>
         <CardFooter className="pt-0">
           {user?.email === email ? (
-            <Button
-              ripple={false}
-              color="green"
-              disabled
-              fullWidth={true}
-              className="shadow-none disabled hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
-            >
-              <Link to={`/purchasefood/${_id}`}>Purchase</Link>
-            </Button>
+            <Link to={`/purchasefood/${_id}`}>
+              <Button
+                ripple={false}
+                color="green"
+                disabled
+                fullWidth={true}
+                className="shadow-none disabled hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+              >
+                Purchase
+              </Button>
+            </Link>
           ) : (
-            <Button
-              ripple={false}
-              color="green"
-              fullWidth={true}
-              className="shadow-none disabled hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
-            >
-              <Link to={`/purchasefood/${_id}`}>Purchase</Link>
-            </Button>
+            <Link to={`/purchasefood/${_id}`}>
+              <Button
+                ripple={false}
+                color="green"
+                fullWidth={true}
+                className="shadow-none disabled hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+              >
+                Purchase
+              </Button>
+            </Link>
           )}
         </CardFooter>
       </Card>

@@ -34,9 +34,9 @@ const FoodCard = ({ food }) => {
         </Typography>
       </CardBody>
       <CardFooter className="pt-0">
-        <Button>
-          <Link to={`/addfood/${_id}`}>Details</Link>
-        </Button>
+        <Link to={`/addfood/${_id}`}>
+          <Button>Details</Button>
+        </Link>
       </CardFooter>
     </Card>
   );
