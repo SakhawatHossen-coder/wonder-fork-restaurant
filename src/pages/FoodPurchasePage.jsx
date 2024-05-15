@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
@@ -8,7 +8,10 @@ import { toast } from "react-toastify";
 const FoodPurchasePage = () => {
   const { user } = useAuth();
   const currentDate = new Date();
-
+  const [count,setCount]=useState(0)
+const handleCount=()=>{
+setCount(count+1)
+}
   const formattedDateOptions = {
     year: "numeric",
     month: "2-digit",
@@ -59,6 +62,7 @@ const FoodPurchasePage = () => {
       date,
       foodimage,
       username,
+      count,
     };
     const updatedData = {
       ...formData,
@@ -95,7 +99,7 @@ const FoodPurchasePage = () => {
         console.error("Purchase failed:", error);
         // Show error message to user
         Swal.fire({
-          title: "Data didn't added",
+          title: "Order has not placed",
           text: "Do you want to continue",
           icon: "error",
           confirmButtonText: "Ok",
@@ -221,6 +225,7 @@ const FoodPurchasePage = () => {
             </div>
           </div>
           <button
+          onclick={handleCount}
             type="submit"
             className="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >

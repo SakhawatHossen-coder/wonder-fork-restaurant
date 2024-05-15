@@ -32,7 +32,7 @@ const DetailsPage = () => {
     <>
       <div className="my-8">
         <Typography variant="h3" className="text-center">
-          details page
+          Your item {foodname} information here:
         </Typography>
       </div>
       <Card className="w-[30rem] mx-auto my-4">
