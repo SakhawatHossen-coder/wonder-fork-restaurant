@@ -6,7 +6,7 @@ import FoodCard from "./FoodCard";
 const FoodCardsSection = () => {
   const [foods, setFoods] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/addfood`)
+    fetch(`https://server-side-ass11.vercel.app/addfood`)
       .then((res) => res.json())
       .then((data) => {
         setFoods(data);

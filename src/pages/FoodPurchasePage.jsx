@@ -72,7 +72,7 @@ const FoodPurchasePage = () => {
     //     console.log("Purchase data:", updatedData); // For debugging
 
     // Implement logic to send purchase data to your backend API
-    fetch("http://localhost:5000/purchasefood", {
+    fetch("https://server-side-ass11.vercel.app/purchasefood", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedData),

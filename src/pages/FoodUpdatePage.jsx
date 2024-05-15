@@ -47,7 +47,7 @@ const FoodUpdatePage = () => {
       price: numericPrice,
     };
 
-    fetch(`http://localhost:5000/addfood/${_id}`, {
+    fetch(`https://server-side-ass11.vercel.app/addfood/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

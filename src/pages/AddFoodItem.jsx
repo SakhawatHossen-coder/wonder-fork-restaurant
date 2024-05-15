@@ -53,8 +53,8 @@ const AddFoodItem = () => {
       username: user?.displayName,
       quantity: numericQuantity,
       price: numericPrice,
-    };
-    fetch(`http://localhost:5000/addfood`, {
+    }; 
+    fetch(`https://server-side-ass11.vercel.app/addfood`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

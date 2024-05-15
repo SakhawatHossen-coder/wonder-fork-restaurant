@@ -8,7 +8,7 @@ const MyAddedFooditems = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/addfood/email/${user?.email}`)
+    fetch(`https://server-side-ass11.vercel.app/addfood/email/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);

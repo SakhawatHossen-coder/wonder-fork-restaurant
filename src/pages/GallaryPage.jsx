@@ -11,7 +11,7 @@ const GallaryPage = () => {
   const { user } = useAuth();
   const [feedbackUser, setFeedbackUser] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/addfeedback`)
+    fetch(`https://server-side-ass11.vercel.app/addfeedback`)
       .then((res) => res.json())
       .then((data) => {
         setFeedbackUser(data);
@@ -31,7 +31,7 @@ const GallaryPage = () => {
       ...feedbackData,
       profile: user?.displayName,
     };
-    fetch(`http://localhost:5000/addfeedback`, {
+    fetch(`https://server-side-ass11.vercel.app/addfeedback`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -52,7 +52,6 @@ const GallaryPage = () => {
             progress: undefined,
             theme: "light",
           });
-         
         }
       })
       .catch((err) => {

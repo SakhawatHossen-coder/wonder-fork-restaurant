@@ -11,7 +11,9 @@ const MyOrderedFoodItems = () => {
 
   const [items, setItems] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/purchasefood/email/${user?.email}`)
+    fetch(
+      `https://server-side-ass11.vercel.app/purchasefood/email/${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -50,9 +52,12 @@ const MyOrderedFoodItems = () => {
               confirmButtonText: "Yes, delete it!",
             }).then((result) => {
               if (result.isConfirmed) {
-                fetch(`http://localhost:5000/purchasefood/${_id}`, {
-                  method: "DELETE",
-                })
+                fetch(
+                  `https://server-side-ass11.vercel.app/purchasefood/${_id}`,
+                  {
+                    method: "DELETE",
+                  }
+                )
                   .then((res) => res.json())
                   .then((data) => {
                     if (data.deletedCount > 0) {

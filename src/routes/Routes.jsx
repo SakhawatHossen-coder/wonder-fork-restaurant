@@ -37,13 +37,13 @@ const router = createBrowserRouter([
         path: "/addfood/:id",
         element: <DetailsPage />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/addfood/${params.id}`),
+          fetch(`https://server-side-ass11.vercel.app/addfood/${params.id}`),
       },
       {
         path: "/addfood/update/:id",
         element: <FoodUpdatePage />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/addfood/${params.id}`),
+          fetch(`https://server-side-ass11.vercel.app/addfood/${params.id}`),
       },
       {
         path: "/purchasefood/:id",
@@ -53,7 +53,9 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/purchasefood/${params.id}`),
+          fetch(
+            `https://server-side-ass11.vercel.app/purchasefood/${params.id}`
+          ),
       },
       {
         path: "/allfoodpage",
