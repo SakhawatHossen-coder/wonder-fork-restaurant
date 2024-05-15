@@ -16,7 +16,7 @@ const GallaryPage = () => {
       .then((data) => {
         setFeedbackUser(data);
       });
-  }, []);
+  }, [feedbackUser]);
   //   console.log(feedback);
   const handleUserForm = (e) => {
     e.preventDefault();
@@ -40,7 +40,7 @@ const GallaryPage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.insertedId) {
           toast.success("✅Your Feedback added successfully", {
             position: "top-right",
@@ -52,6 +52,7 @@ const GallaryPage = () => {
             progress: undefined,
             theme: "light",
           });
+         
         }
       })
       .catch((err) => {
@@ -86,7 +87,7 @@ const GallaryPage = () => {
         <div className="hero-content text-center text-neutral-content">
           <div className="max-w-md">
             <h1 className="mb-5 text-5xl font-bold">
-              A World of Flavors Awaits :// Page Name Gallery Page
+              The Wandering Folk | Gallery
             </h1>
             <p className="mb-5">
               Explore our diverse menu featuring exceptional local &

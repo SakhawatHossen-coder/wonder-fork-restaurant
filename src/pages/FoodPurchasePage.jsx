@@ -53,7 +53,6 @@ const FoodPurchasePage = () => {
     const date = form.elements.date.value;
     const numericQuantity = parseFloat(quantity);
     const numericPrice = parseFloat(price);
-    console.log(foodimage, username);
     const formData = {
       foodname,
       price,
