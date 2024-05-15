@@ -73,7 +73,7 @@ const Register = () => {
               Create an account and unlock a world of culinary delights.
             </h1>
             <p className="text-white mt-1">
-              By registering with [Restaurant Name], you'll gain access to a
+              By registering with The Wandering Fork , you'll gain access to a
               variety of exclusive benefits that will enhance your dining
               experience.
             </p>

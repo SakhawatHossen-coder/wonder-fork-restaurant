@@ -6,6 +6,8 @@ import Swal from "sweetalert2";
 import SocialLogin from "../components/SocialLogin";
 import login from "../assets/login.svg";
 import { Helmet } from "react-helmet";
+import axios from "axios";
+
 const Login = () => {
   const { logIn } = useAuth();
   const {
@@ -22,6 +24,17 @@ const Login = () => {
     // console.log(data);
     logIn(email, password)
       .then((result) => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        const user = { email };
+        axios
+          .post("http://localhost:5000/jwt", user, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log(res.data);
+            navigate(from, { replace: true });
+          });
         if (result.user) {
           Swal.fire({
             title: "Log In Successfully",
@@ -30,7 +43,7 @@ const Login = () => {
             confirmButtonText: "Ok",
           });
           // console.log(result.user);
-          navigate(from);
+          // navigate(from);
         }
       })
       .catch((err) => {

@@ -3,6 +3,7 @@ import { BsGithub, BsGoogle, BsTwitter } from "react-icons/bs";
 import useAuth from "../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const SocialLogin = () => {
   const { googleLogin, twitterLogin, githubLogin } = useAuth();
@@ -11,6 +12,17 @@ const SocialLogin = () => {
   let from = location?.state || "/";
   const handleSocialLogin = (socialProvider) => {
     socialProvider().then((result) => {
+      // const loggedInUser = result.user;
+      // console.log(loggedInUser);
+      // const user = { email };
+      // axios
+      //   .post("http://localhost:5000/jwt", user, {
+      //     withCredentials: true,
+      //   })
+      //   .then((res) => {
+      //     console.log(res.data);
+      //     navigate(from, { replace: true });
+      //   });
       if (result.user) {
         Swal.fire({
           title: "Log In Successfully",
