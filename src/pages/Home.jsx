@@ -8,12 +8,11 @@ const Home = () => {
     <div>
       <Banner />
       {/* Top Food */}
-<TopFoodSection/>
+      <TopFoodSection />
       {/* FAQ */}
       <div className="my-10">
-      <Faq/>
+        <Faq />
       </div>
-        
     </div>
   );
 };

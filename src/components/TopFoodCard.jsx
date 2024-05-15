@@ -7,6 +7,7 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 const TopFoodCard = ({ food }) => {
   const { foodname, foodimage, foodcategory, price, quantity, _id } = food;
 
@@ -32,9 +33,9 @@ const TopFoodCard = ({ food }) => {
         </Typography>
       </CardBody>
       <CardFooter className="pt-0">
-        {/* <Button>
-          <Link to={`/addfood/${_id}`}>Details</Link>
-        </Button> */}
+        <Link to={`/addfood/${_id}`}>
+          <Button color="cyan">Details</Button>
+        </Link>
       </CardFooter>
     </Card>
   );

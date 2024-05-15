@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import SocialLogin from "../components/SocialLogin";
-
+import login from "../assets/login.svg";
 const Login = () => {
   const { logIn } = useAuth();
   const {
@@ -46,11 +46,7 @@ const Login = () => {
     <>
       <section className="flex flex-col md:flex-row h-screen items-center mb-24 mt-32">
         <div className="bg-indigo-600 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
-          <img
-            src="https://source.unsplash.com/s"
-            alt=""
-            className="w-full h-full object-cover"
-          />
+          <img src={login} alt="login" className="bg-center object-cover" />
         </div>
 
         <div
@@ -129,7 +125,7 @@ const Login = () => {
 
             <hr className="my-6 border-gray-300 w-full" />
 
-       <SocialLogin/>
+            <SocialLogin />
 
             <p className="mt-8 mb-20">
               Need an account?{" "}
