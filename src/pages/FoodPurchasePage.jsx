@@ -5,13 +5,14 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 const FoodPurchasePage = () => {
   const { user } = useAuth();
   const currentDate = new Date();
-  const [count,setCount]=useState(0)
-const handleCount=()=>{
-setCount(count+1)
-}
+  const [count, setCount] = useState(0);
+  const handleCount = () => {
+    setCount(count + 1);
+  };
   const formattedDateOptions = {
     year: "numeric",
     month: "2-digit",
@@ -109,6 +110,11 @@ setCount(count+1)
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>The Wandering Fork | Food Purchase Page</title>
+        <link rel="canonical" href="" />
+      </Helmet>
       <div className="max-w-2xl mx-auto bg-white p-16">
         {/* <form onSubmit={handleSubmit(onSubmit)}> */}
         <form onSubmit={handleSubmit}>
@@ -225,7 +231,7 @@ setCount(count+1)
             </div>
           </div>
           <button
-          onclick={handleCount}
+            onclick={handleCount}
             type="submit"
             className="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >

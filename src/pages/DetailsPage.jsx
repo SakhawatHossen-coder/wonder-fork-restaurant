@@ -9,6 +9,7 @@ import {
 } from "@material-tailwind/react";
 import { Link, useLoaderData } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { Helmet } from "react-helmet";
 
 const DetailsPage = () => {
   const singleFood = useLoaderData();
@@ -30,6 +31,11 @@ const DetailsPage = () => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>The Wandering Fork | Food Detail Page</title>
+        <link rel="canonical" href="" />
+      </Helmet>
       <div className="my-8">
         <Typography variant="h3" className="text-center">
           Your item {foodname} information here:

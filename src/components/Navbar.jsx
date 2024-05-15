@@ -9,14 +9,14 @@ const Navbar = () => {
     <>
       <NavLink to="/">
         <li>
-          <Button color="deep-orange" className="btn sans">
+          <Button color="cyan" className="btn sans">
             Home
           </Button>
         </li>
       </NavLink>
       <NavLink to="/allfoodpage">
         <li>
-          <Button color="deep-orange" className="btn pop">
+          <Button color="cyan" className="btn pop">
             All Foods
           </Button>
         </li>
@@ -24,7 +24,7 @@ const Navbar = () => {
       <NavLink to="/gallery">
         <li>
           {" "}
-          <Button color="deep-orange" className="btn pop">
+          <Button color="cyan" className="btn pop">
             Gallery
           </Button>
         </li>
@@ -63,7 +63,7 @@ const Navbar = () => {
           </div>
           <NavLink to="/">
             <span className="btn btn-ghost text-xl jost">
-              Wanderlust Voyage
+              The Wandering Fork
             </span>
           </NavLink>
         </div>
@@ -122,12 +122,7 @@ const Navbar = () => {
                     <span className="pop">My ordered food items</span>
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink to="/mypurchasepage" color="blue" variant="outlined">
-                    <span className="pop">My Purchase Page</span>
-                  </NavLink>
-                </li>
-
+            
                 <li>
                   <Button color="blue" variant="outlined" onClick={logOut}>
                     <span className="pop">Logout</span>
@@ -137,7 +132,7 @@ const Navbar = () => {
             </div>
           ) : (
             <NavLink to="/login">
-              <Button color="lime" className="btn">
+              <Button color="green" className="btn">
                 Login
               </Button>
             </NavLink>

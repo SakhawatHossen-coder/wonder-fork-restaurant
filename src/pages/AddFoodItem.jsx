@@ -86,7 +86,11 @@ const AddFoodItem = () => {
   };
   return (
     <>
-      <div>AddFoodItem</div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>The Wandering Fork | Add your Food Items</title>
+        <link rel="canonical" href="" />
+      </Helmet>
       <div>
         <div className="max-w-2xl mx-auto bg-white p-16">
           <form onSubmit={handleSubmit(onSubmit)}>

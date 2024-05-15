@@ -79,7 +79,11 @@ const FoodUpdatePage = () => {
   };
   return (
     <>
-      <div>AddFoodItem</div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>The Wandering Fork | Food Update Page</title>
+        <link rel="canonical" href="" />
+      </Helmet>
       <div>
         <div className="max-w-2xl mx-auto bg-white p-16">
           <form onSubmit={handleUpdateForm}>

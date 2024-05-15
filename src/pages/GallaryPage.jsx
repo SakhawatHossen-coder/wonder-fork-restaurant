@@ -3,11 +3,9 @@ import GalleryCard from "../components/GalleryCard";
 import { Button } from "@material-tailwind/react";
 import { BiPlusCircle } from "react-icons/bi";
 import useAuth from "../hooks/useAuth";
-import Swal from "sweetalert2";
-// import toast, { Toaster } from "react-hot-toast";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Helmet } from "react-helmet";
 
 const GallaryPage = () => {
   const { user } = useAuth();
@@ -70,10 +68,13 @@ const GallaryPage = () => {
         });
       });
   };
-
   return (
     <>
-      <div>GallaryPage</div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>The Wandering Fork | Gallery</title>
+        <link rel="canonical" href="" />
+      </Helmet>
       <div
         className="hero min-h-screen"
         style={{
@@ -96,7 +97,7 @@ const GallaryPage = () => {
       </div>
       {/* Gallery Section */}
       {/* Card */}
- 
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {feedbackUser?.map((feedbackUser, idx) => (
           <GalleryCard key={idx} feedbackUser={feedbackUser} />
@@ -104,7 +105,6 @@ const GallaryPage = () => {
       </div>
       {/* </div> */}
       <div className="my-12">
-       
         <Button
           onClick={() => document.getElementById("my_modal_5").showModal()}
           size="lg"
@@ -163,7 +163,6 @@ const GallaryPage = () => {
 
             <div className="modal-action">
               <form method="dialog">
-        
                 <button className="btn btn-circle bg-red-500">X</button>
               </form>
             </div>

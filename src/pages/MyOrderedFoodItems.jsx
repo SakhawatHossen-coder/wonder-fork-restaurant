@@ -3,6 +3,7 @@ import { useLoaderData, useParams } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import OrderCard from "../components/OrderCard";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const MyOrderedFoodItems = () => {
   const { user } = useAuth();
@@ -21,6 +22,11 @@ const MyOrderedFoodItems = () => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>The Wandering Fork | My Order Page</title>
+        <link rel="canonical" href="" />
+      </Helmet>
       <div className=" my-5 font-semibold text-center space-y-5">
         <Typography variant="h3">
           Revisit your past culinary adventures!

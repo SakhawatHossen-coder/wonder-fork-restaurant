@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useAuth();
@@ -60,6 +61,11 @@ const Register = () => {
   };
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>The Wandering Fork | Register Page</title>
+        <link rel="canonical" href="" />
+      </Helmet>
       <div className="h-screen md:flex my-20">
         <div className="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden">
           <div className="mx-10">

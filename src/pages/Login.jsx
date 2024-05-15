@@ -5,6 +5,7 @@ import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import SocialLogin from "../components/SocialLogin";
 import login from "../assets/login.svg";
+import { Helmet } from "react-helmet";
 const Login = () => {
   const { logIn } = useAuth();
   const {
@@ -44,6 +45,11 @@ const Login = () => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>The Wandering Fork | Login</title>
+        <link rel="canonical" href="" />
+      </Helmet>
       <section className="flex flex-col md:flex-row h-screen items-center mb-24 mt-32">
         <div className="bg-indigo-600 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
           <img src={login} alt="login" className="bg-center object-cover" />
@@ -126,16 +132,6 @@ const Login = () => {
             <hr className="my-6 border-gray-300 w-full" />
 
             <SocialLogin />
-
-            <p className="mt-8 mb-20">
-              Need an account?{" "}
-              <a
-                href="#"
-                className="text-blue-500 hover:text-blue-700 font-semibold"
-              >
-                Create an account
-              </a>
-            </p>
           </div>
         </div>
       </section>
@@ -144,23 +140,3 @@ const Login = () => {
 };
 
 export default Login;
-
-/* 
- const { googleLogin, twitterLogin, githubLogin } = useContext(AuthContext);
-  let navigate = useNavigate();
-  let location = useLocation();
-  let from = location?.state || "/";
-  const handleSocialLogin = (socialProvider) => {
-    socialProvider().then((result) => {
-      if (result.user) {
-        Swal.fire({
-          title: "Log In Successfully",
-          text: "Do you want to continue",
-          icon: "success",
-          confirmButtonText: "Ok",
-        });
-        navigate(from);
-      }
-    });
-  };
-*/

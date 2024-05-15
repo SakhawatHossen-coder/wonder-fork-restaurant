@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
 import FoodItemCard from "../components/FoodItemCard";
-import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const MyAddedFooditems = () => {
   const { user } = useAuth();
-
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -19,7 +18,11 @@ const MyAddedFooditems = () => {
   console.log(items);
   return (
     <>
-      <div>MyAddedFooditems</div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>The Wandering Fork | My Added Food Items</title>
+        <link rel="canonical" href="" />
+      </Helmet>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mx-4">
         {items?.map((item, idx) => {
           return <FoodItemCard key={idx} item={item} />;
