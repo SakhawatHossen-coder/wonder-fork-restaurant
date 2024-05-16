@@ -4,10 +4,15 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
+import { useLoaderData, useNavigate } from "react-router-dom";
+
+import { Helmet } from "react-helmet";
 
 const AddFoodItem = () => {
   const { user } = useAuth();
   //  console.log(user);
+  const navigate = useNavigate();
+  const from = "/allfoodpage" || "/";
   const {
     register,
     reset,
@@ -53,8 +58,8 @@ const AddFoodItem = () => {
       username: user?.displayName,
       quantity: numericQuantity,
       price: numericPrice,
-    }; 
-    fetch(`https://server-side-ass11.vercel.app/addfood`, {
+    };
+    fetch(`${import.meta.env.VITE_BASE_URL}/addfood`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -71,6 +76,7 @@ const AddFoodItem = () => {
             icon: "success",
             confirmButtonText: "Ok",
           });
+          navigate(from);
         }
       })
       .catch((err) => {

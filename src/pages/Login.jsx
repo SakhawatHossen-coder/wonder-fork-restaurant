@@ -24,17 +24,19 @@ const Login = () => {
     // console.log(data);
     logIn(email, password)
       .then((result) => {
-        const loggedInUser = result.user;
-        console.log(loggedInUser);
-        const user = { email };
-        axios
-          .post("https://server-side-ass11.vercel.app/jwt", user, {
-            withCredentials: true,
-          })
-          .then((res) => {
-            console.log(res.data);
-            navigate(from, { replace: true });
-          });
+        // const loggedInUser = result.user;
+        // console.log(loggedInUser);
+        // const user = { email };
+        // axios
+        //   .post("https://server-side-ass11.vercel.app/jwt", user, {
+        //     withCredentials: true,
+        //   })
+        //   .then((res) => {
+        //     console.log(res.data);
+        //     if (res.data.success) {
+        //       navigate(from, { replace: true });
+        //     }
+        //   });
         if (result.user) {
           Swal.fire({
             title: "Log In Successfully",
@@ -43,8 +45,9 @@ const Login = () => {
             confirmButtonText: "Ok",
           });
           // console.log(result.user);
-          // navigate(from);
+          navigate(from);
         }
+        // console.log(result.user);
       })
       .catch((err) => {
         Swal.fire({

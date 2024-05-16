@@ -15,6 +15,7 @@ const DetailsPage = () => {
   const singleFood = useLoaderData();
   //   console.log(singleFood);
   const { user } = useAuth();
+  console.log(user.email);
   const {
     foodname,
     foodimage,
@@ -28,7 +29,7 @@ const DetailsPage = () => {
     description,
     country,
   } = singleFood;
-
+  console.log(email);
   return (
     <>
       <Helmet>
@@ -83,8 +84,9 @@ const DetailsPage = () => {
         </CardBody>
         <CardFooter className="pt-0">
           {user?.email === email ? (
-            <Link to={`/purchasefood/${_id}`}>
-              <Button
+            <button className="btn btn-disabled">
+              <Link to={`/purchasefood/${_id}`}>
+                {/* <Button
                 ripple={false}
                 color="green"
                 disabled
@@ -92,15 +94,17 @@ const DetailsPage = () => {
                 className="shadow-none disabled hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
               >
                 Purchase
-              </Button>
-            </Link>
+              </Button> */}
+                Purchase
+              </Link>
+            </button>
           ) : (
             <Link to={`/purchasefood/${_id}`}>
               <Button
                 ripple={false}
                 color="green"
                 fullWidth={true}
-                className="shadow-none disabled hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+                className="shadow-none  hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
               >
                 Purchase
               </Button>

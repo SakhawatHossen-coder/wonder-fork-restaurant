@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { Helmet } from "react-helmet";
 const FoodPurchasePage = () => {
   const { user } = useAuth();
@@ -72,7 +72,7 @@ const FoodPurchasePage = () => {
     //     console.log("Purchase data:", updatedData); // For debugging
 
     // Implement logic to send purchase data to your backend API
-    fetch("https://server-side-ass11.vercel.app/purchasefood", {
+    fetch(`${import.meta.env.VITE_BASE_URL}/purchasefood`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedData),
@@ -152,6 +152,7 @@ const FoodPurchasePage = () => {
                 required
                 //  {...register("price", { required: true })}
                 defaultValue={price}
+                disabled
               />
             </div>
             <div>
@@ -170,6 +171,7 @@ const FoodPurchasePage = () => {
                 required
                 //  {...register("quantity", { required: true })}
                 defaultValue={quantity}
+                disabled
               />
             </div>
             <div>
@@ -230,13 +232,14 @@ const FoodPurchasePage = () => {
             </div>
           </div>
           <button
-            onclick={handleCount}
+            onClick={handleCount}
             type="submit"
             className="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Purchase
           </button>
         </form>
+        <ToastContainer />
       </div>
     </>
   );

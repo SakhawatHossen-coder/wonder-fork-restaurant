@@ -37,13 +37,13 @@ const router = createBrowserRouter([
         path: "/addfood/:id",
         element: <DetailsPage />,
         loader: ({ params }) =>
-          fetch(`https://server-side-ass11.vercel.app/addfood/${params.id}`),
+          fetch(`${import.meta.env.VITE_BASE_URL}/addfood/${params.id}`),
       },
       {
         path: "/addfood/update/:id",
         element: <FoodUpdatePage />,
         loader: ({ params }) =>
-          fetch(`https://server-side-ass11.vercel.app/addfood/${params.id}`),
+          fetch(`${import.meta.env.VITE_BASE_URL}/addfood/${params.id}`),
       },
       {
         path: "/purchasefood/:id",
@@ -53,9 +53,7 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://server-side-ass11.vercel.app/purchasefood/${params.id}`
-          ),
+          fetch(`${import.meta.env.VITE_BASE_URL}/purchasefood/${params.id}`),
       },
       {
         path: "/allfoodpage",
@@ -64,15 +62,27 @@ const router = createBrowserRouter([
 
       {
         path: "/myaddedfooditems",
-        element: <MyAddedFooditems />,
+        element: (
+          <PrivateRoutes>
+            <MyAddedFooditems />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/mypurchasepage",
-        element: <MyPurchasePage />,
+        element: (
+          <PrivateRoutes>
+            <MyPurchasePage />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/myorderedfooditems",
-        element: <MyOrderedFoodItems />,
+        element: (
+          <PrivateRoutes>
+            <MyOrderedFoodItems />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/addfooditem",

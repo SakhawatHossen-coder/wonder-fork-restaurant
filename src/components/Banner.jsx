@@ -23,9 +23,11 @@ const Banner = () => {
             experiences. Our passion lies in exceeding expectations by curating
             a sensory adventure that goes beyond the plate.
           </p>
-          <Button color="blue" className="">
-            <Link to="/allfoodpage">All Foods</Link>
-          </Button>
+          <Link to="/allfoodpage">
+            <Button color="blue" className="">
+              All Foods
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

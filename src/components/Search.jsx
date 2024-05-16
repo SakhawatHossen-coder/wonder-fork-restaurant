@@ -12,7 +12,7 @@ const Search = () => {
     const fetchSearchResults = async () => {
       if (searchTerm) {
         const response = await fetch(
-          `https://server-side-ass11.vercel.app/searchfood?searchTerm=${searchTerm}`
+          `${import.meta.env.VITE_BASE_URL}/searchfood?searchTerm=${searchTerm}`
         ); // Replace with your actual API endpoint
         const data = await response.json();
         setSearchResults(data);

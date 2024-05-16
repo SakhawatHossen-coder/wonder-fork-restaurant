@@ -3,6 +3,8 @@ import { useLoaderData, useParams } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import OrderCard from "../components/OrderCard";
 import Swal from "sweetalert2";
+import { Typography } from "@material-tailwind/react";
+
 import { Helmet } from "react-helmet";
 
 const MyOrderedFoodItems = () => {
@@ -11,9 +13,7 @@ const MyOrderedFoodItems = () => {
 
   const [items, setItems] = useState([]);
   useEffect(() => {
-    fetch(
-      `https://server-side-ass11.vercel.app/purchasefood/email/${user?.email}`
-    )
+    fetch(`${import.meta.env.VITE_BASE_URL}/purchasefood/email/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -52,12 +52,9 @@ const MyOrderedFoodItems = () => {
               confirmButtonText: "Yes, delete it!",
             }).then((result) => {
               if (result.isConfirmed) {
-                fetch(
-                  `https://server-side-ass11.vercel.app/purchasefood/${_id}`,
-                  {
-                    method: "DELETE",
-                  }
-                )
+                fetch(`${import.meta.env.VITE_BASE_URL}/purchasefood/${_id}`, {
+                  method: "DELETE",
+                })
                   .then((res) => res.json())
                   .then((data) => {
                     if (data.deletedCount > 0) {

@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from "react";
 import GalleryCard from "../components/GalleryCard";
-import { Button } from "@material-tailwind/react";
+import { Button, button } from "@material-tailwind/react";
 import { BiPlusCircle } from "react-icons/bi";
 import useAuth from "../hooks/useAuth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Helmet } from "react-helmet";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const GallaryPage = () => {
+  const navigate = useNavigate();
   const { user } = useAuth();
   const [feedbackUser, setFeedbackUser] = useState([]);
   useEffect(() => {
-    fetch(`https://server-side-ass11.vercel.app/addfeedback`)
+    fetch(`${import.meta.env.VITE_BASE_URL}/addfeedback`)
       .then((res) => res.json())
       .then((data) => {
         setFeedbackUser(data);
       });
   }, [feedbackUser]);
   //   console.log(feedback);
+  const handleNav = () => {
+    navigate("/login");
+  };
   const handleUserForm = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -31,7 +36,7 @@ const GallaryPage = () => {
       ...feedbackData,
       profile: user?.displayName,
     };
-    fetch(`https://server-side-ass11.vercel.app/addfeedback`, {
+    fetch(`${import.meta.env.VITE_BASE_URL}/addfeedback`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -104,15 +109,27 @@ const GallaryPage = () => {
         ))}
       </div>
       {/* </div> */}
+
       <div className="my-12">
-        <Button
-          onClick={() => document.getElementById("my_modal_5").showModal()}
-          size="lg"
-          className="flex mx-auto justify-center items-center gap-3"
-        >
-          <BiPlusCircle size={20} />
-          Add
-        </Button>
+        {user?.email ? (
+          <Button
+            onClick={() => document.getElementById("my_modal_5").showModal()}
+            size="lg"
+            className="flex mx-auto justify-center items-center gap-3"
+          >
+            <BiPlusCircle size={20} />
+            Add
+          </Button>
+        ) : (
+          <Button
+            onClick={handleNav}
+            size="lg"
+            className="flex mx-auto justify-center items-center gap-3"
+          >
+            <BiPlusCircle size={20} />
+            Add
+          </Button>
+        )}
         <ToastContainer />
         <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
           <div className="modal-box">

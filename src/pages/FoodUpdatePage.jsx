@@ -2,6 +2,7 @@ import React from "react";
 import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
+import { Helmet } from "react-helmet";
 
 const FoodUpdatePage = () => {
   const updateData = useLoaderData();
@@ -13,7 +14,6 @@ const FoodUpdatePage = () => {
     price,
     quantity,
     _id,
-
     description,
     country,
   } = updateData;
@@ -47,7 +47,7 @@ const FoodUpdatePage = () => {
       price: numericPrice,
     };
 
-    fetch(`https://server-side-ass11.vercel.app/addfood/${_id}`, {
+    fetch(`${import.meta.env.VITE_BASE_URL}/addfood/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
