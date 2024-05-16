@@ -6,12 +6,14 @@ import useAuth from "../hooks/useAuth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Helmet } from "react-helmet";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 const GallaryPage = () => {
-  const navigate = useNavigate();
+  // const from = "/login" || "/";
   const { user } = useAuth();
   const [feedbackUser, setFeedbackUser] = useState([]);
+  const location = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BASE_URL}/addfeedback`)
       .then((res) => res.json())
@@ -21,7 +23,8 @@ const GallaryPage = () => {
   }, [feedbackUser]);
   //   console.log(feedback);
   const handleNav = () => {
-    navigate("/login");
+    navigate("/login", { state: location?.pathname || "/" });
+
   };
   const handleUserForm = (e) => {
     e.preventDefault();
