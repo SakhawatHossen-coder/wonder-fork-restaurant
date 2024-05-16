@@ -19,7 +19,7 @@ const FoodCardsSection = () => {
         Explore our categories to find your perfect meal:
       </Typography>
       <div className="my-5">
-        <div className="flex mx-10 justify-end">
+        <div className="flex flex-col space-y-5 items-center mx-10 ">
           <Search />
         </div>
       </div>

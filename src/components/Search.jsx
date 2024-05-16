@@ -62,7 +62,7 @@ const Search = () => {
       <div className="block">
         {searchResults.length > 0 && (
           // <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-5">
-          <div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {searchResults.map((food) => (
               <FoodCard key={food._id} food={food} />
             ))}

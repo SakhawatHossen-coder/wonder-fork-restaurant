@@ -7,15 +7,20 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { Helmet } from "react-helmet";
 
 const DetailsPage = () => {
   const singleFood = useLoaderData();
+  const navigate = useNavigate();
+
   //   console.log(singleFood);
   const { user } = useAuth();
-  console.log(user.email);
+  // console.log(user.email);
+  // if (!user?.email) {
+  //   return navigate("/login");
+  // }
   const {
     foodname,
     foodimage,
