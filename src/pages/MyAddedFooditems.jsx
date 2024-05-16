@@ -52,7 +52,7 @@ const MyAddedFooditems = () => {
                       if (data.deletedCount > 0) {
                         Swal.fire({
                           title: "Deleted!",
-                          text: "Your ordered item has been deleted.",
+                          text: "Your added item has been deleted.",
                           icon: "success",
                         });
                         const remaining = items.filter((i) => i._id !== _id);
